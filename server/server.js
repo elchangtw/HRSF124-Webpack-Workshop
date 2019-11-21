@@ -17,7 +17,8 @@ app.use("/", express.static(path.join(__dirname, '../public')));
 
 
 app.post('/', (req, res) => {
-  res.status(200).send();
+  console.log(req.body)
+  res.status(200).send(csvStr);
 });
 
 

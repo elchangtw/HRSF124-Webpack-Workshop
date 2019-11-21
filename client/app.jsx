@@ -27,33 +27,45 @@ class App extends React.Component {
     this.F1Handler = this.F1Handler.bind(this);
     this.F2Handler = this.F2Handler.bind(this);
     this.F3Handler = this.F3Handler.bind(this);
+    this.lastHandler = this.lastHandler.bind(this);
   }
 
   componentDidMount() {
   }
 
   homeHandler() {
-    console.log('Home button clicked.');
     this.setState({
       currentPage: 1,
     });
   }
 
   F1Handler(F1Data) {
-    console.log('F1 button clicked.');
     this.setState({
       currentPage: 2,
-      name: F1Data.name,
+      name: document.getElementById("textarea-name").value,
+      email: document.getElementById("textarea-email").value
     });
   }
 
-  F2Handler() {
+  F2Handler(F2Data) {
     this.setState({
       currentPage: 3,
+      addressline: document.getElementById("textarea-addressline").value,
+      city: document.getElementById("textarea-city").value,
+      state: document.getElementById("textarea-state").value,
+      zipcode: document.getElementById("textarea-zipcode").value,
     });
   }
 
-  F3Handler() {
+  F3Handler(F3Data) {
+    this.setState({
+      currentPage: 4,
+      creditcard: document.getElementById("textarea-creditcard").value,
+    });
+  }
+
+  lastHandler(){
+    console.log(this.state);
     this.setState({
       currentPage: 0,
     });
@@ -82,6 +94,13 @@ class App extends React.Component {
       return (
       <div>
         <Form3 F3Handler={this.F3Handler} />
+      </div>
+      );
+    } else if(this.state.currentPage === 4) {
+      return (
+      <div>
+        <div>This is totally safe.</div><p />
+        <button className="buttonNext" onClick={this.lastHandler}>Unsuspicious Last Button</button>
       </div>
       );
     }
