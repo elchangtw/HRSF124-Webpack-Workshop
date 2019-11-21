@@ -1,11 +1,27 @@
-const express = require('express');
-const app = express();
-const port = 3000;
+var express = require('express');
 const path = require('path');
+// var cors = require('cors');
+// var parser = require('body-parser');
+
+var app = express();
+module.exports.app = app;
+
+app.set('port', 3000);
+
+// app.use(cors());
+// app.use(parser.json());
+// app.use(parser.urlencoded({ extended: true }));
 
 app.use("/", express.static(path.join(__dirname, '../public')));
 
 
-app.listen(port, () => {
-  console.log('we be arriving at port '+ port);
-})
+
+app.post('/', (req, res) => {
+  res.status(200).send();
+});
+
+
+if (!module.parent) {
+  app.listen(app.get('port'));
+  console.log('Listening on', app.get('port'));
+}
